@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Your Content</title>
+</head>
+<body id="page-top">
+    <div class="container">
+        <h2>Post Your Content</h2>
+
+        <% if @post.errors.any? %>
+            <div id="error_explanation" aria-live="assertive">
+                <h2>
+                    <%= pluralize(@post.errors.count, "error") %> prohibited
+                    this post from being saved:
+                </h2>
+                <ul>
+                    <% @post.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+
+        <%= form_with(model: @post, local: true, html: { multipart: true }) do |form| %>
+            <div class="field">
+                <%= form.label :description %>
+                <%= form.text_area :description, placeholder: "Write your post description here..." %>
+            </div>
+
+            <div class="field">
+                <%= form.label :images %>
+                <%= form.file_field :images, multiple: true, accept: 'image/*' %>
+            </div>
+
+            <div class="field">
+                <%= form.submit "Post" %>
+            </div>
+        <% end %>
+
+        <%= button_to 'Cerrar sesión', destroy_user_session_path, method: :delete %>
+    </div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Post Form</title>
+
+  <style>
+    /* General body and container styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f7fa;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 600px;
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2d3748;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    /* Form fields */
+    .field {
+      width: 100%;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .field label {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .field textarea, .field input[type="file"] {
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #f9fafb;
+      transition: border-color 0.3s ease;
+      width: 100%;
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .field textarea:focus, .field input[type="file"]:focus {
+      outline: none;
+      border-color: #4caf50;
+      background-color: #fff;
+    }
+
+    .field input[type="submit"] {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    .field input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+        width: 90%;
+      }
+    }
+
+    /* Error message styling */
+    .error-messages {
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Post Your Content</h2>
+
+    <%= form_with(model: @post, local: true, html: { multipart: true }) do |form| %>
+      <div class="field">
+        <%= form.label :description %>
+        <%= form.text_area :description, placeholder: "Write your post description here..." %>
+      </div>
+
+      <div class="field">
+        <%= form.label :images %>
+        <%= form.file_field :images, multiple: true, accept: 'image/*' %>
+      </div>
+
+      <div class="field">
+        <%= form.submit "Post" %>
+      </div>
+    <% end %>
+      <%= button_to 'Cerrar sesión', destroy_user_session_path, method: :delete %>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Sign Up</title>
+
+  <style>
+    /* General body and container styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f1f5f8;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      color: #2d3748;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .field {
+      width: 100%;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .field label {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 8px;
+    }
+
+    .field input {
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background-color: #f9fafb;
+      transition: border-color 0.3s ease;
+    }
+
+    .field input:focus {
+      outline: none;
+      border-color: #4caf50;
+      background-color: #fff;
+    }
+
+    .field input[type="submit"] {
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .field input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .actions {
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .actions input {
+      width: 100%;
+    }
+
+    .error-messages {
+      background-color: #f8d7da;
+      color: #721c24;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      text-align: center;
+    }
+
+    /* Link styles for sign up and login */
+    .links {
+      margin-top: 20px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .links a {
+      color: #4caf50;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Sign Up</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+      <% if resource.errors.any? %>
+        <div class="error-messages">
+          <h4><%= pluralize(resource.errors.count, "error") %> prohibited this account from being saved:</h4>
+          <ul>
+            <% resource.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <!-- Name Field -->
+      <div class="field">
+        <%= f.label :name %><br />
+        <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+      </div>
+
+      <!-- Email Field -->
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <!-- Password Field -->
+      <div class="field">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+        <em>6 or more characters</em>
+      </div>
+
+      <!-- Password Confirmation -->
+      <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="actions">
+        <%= f.submit "Sign Up" %>
+      </div>
+
+    <% end %>
+
+    <!-- Already have an account? Link -->
+    <div class="links">
+      <p>Already have an account? <%= link_to 'Login here', new_session_path(resource_name) %></p>
+    </div>
+  </div>
+</body>
+</html>

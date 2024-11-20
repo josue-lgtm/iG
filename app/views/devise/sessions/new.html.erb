@@ -1,0 +1,153 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Log In</title>
+    
+    <style>
+        /* General body and container styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-family: 'Arial', sans-serif;
+            font-size: 1.8em;
+            color: #007bff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Input and label styles */
+        .field {
+            margin-bottom: 20px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .field input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fafafa;
+            margin-top: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .field input:focus {
+            border-color: #007bff;
+            background-color: #ffffff;
+            outline: none;
+        }
+
+        .field input[type="checkbox"] {
+            width: auto;
+            margin-top: 0;
+        }
+
+        /* Submit button */
+        .actions {
+            text-align: center;
+        }
+
+        .actions input[type="submit"] {
+            width: 100%;
+            padding: 14px;
+            background-color: #007bff;
+            color: white;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .actions input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Link styles */
+        .devise-links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .devise-links a {
+            color: #007bff;
+            font-size: 1em;
+            text-decoration: none;
+        }
+
+        .devise-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Media queries for responsive design */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                margin-top: 30px;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Log in</h2>
+
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="field">
+                <%= f.label :email %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            </div>
+
+            <div class="field">
+                <%= f.label :password %>
+                <%= f.password_field :password, autocomplete: "current-password" %>
+            </div>
+
+            <% if devise_mapping.rememberable? %>
+                <div class="field">
+                    <%= f.check_box :remember_me %>
+                    <%= f.label :remember_me %>
+                </div>
+            <% end %>
+
+            <div class="actions">
+                <%= f.submit "Log in" %>
+            </div>
+        <% end %>
+
+        <div class="devise-links">
+            <%= render "devise/shared/links" %>
+        </div>
+    </div>
+</body>
+</html>
