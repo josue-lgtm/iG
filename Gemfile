@@ -19,7 +19,7 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 gem 'devise'
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.14'
 gem 'mini_magick' # Para procesamiento de imágenes
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
